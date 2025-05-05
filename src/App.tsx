@@ -19,6 +19,7 @@ import {
 import {
   Colors,} from 'react-native/Libraries/NewAppScreen';
 import RootNavigator from './navigators/RootNavigator';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -26,9 +27,11 @@ type SectionProps = PropsWithChildren<{
 
 function App(): React.JSX.Element {
   return (
+    <GestureHandlerRootView style={{ flex: 1 }}>
     <NavigationContainer>
       <RootNavigator/>
     </NavigationContainer>
+    </GestureHandlerRootView>
   );
 }
 

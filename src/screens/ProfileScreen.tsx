@@ -1,11 +1,21 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, Button } from 'react-native'
 import React from 'react'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { SetStateAction } from 'react';
 
-const ProfileScreen = () => {
+const ProfileScreen = ({setIsLoggedin}: { setIsLoggedin :React.Dispatch<React.SetStateAction<boolean | null>>}) => {
+
+  const handleLogout = async () => {
+    // await AsyncStorage.removeItem('@userData'); 
+    setIsLoggedin(false); 
+  };
+
+
   return (
-    <View>
-      <Text>ProfileScreen</Text>
-    </View>
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <Text>Welcome to Profile</Text>
+    <Button title="Logout" onPress={handleLogout} />
+  </View>
   )
 }
 

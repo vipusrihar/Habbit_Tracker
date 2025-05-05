@@ -7,15 +7,21 @@ import ProfileScreen from '../screens/ProfileScreen';
 
 const Tab = createBottomTabNavigator();
 
-const MainPage = () => {
+const MainPage = ({ setIsLoggedin}: { setIsLoggedin :React.Dispatch<React.SetStateAction<boolean | null>> }) => {
   return (
-    <Tab.Navigator>
-        <Tab.Screen name='Habbit' component={HabbitScreen}/>
-        <Tab.Screen name='Progress' component={ProgressScreen}/>
-        <Tab.Screen name='Profile' component={ProfileScreen}/>
+    <Tab.Navigator screenOptions={{ headerShown: false }}>
+      <Tab.Screen name='Habbit' component={HabbitScreen} />
+      <Tab.Screen name='Progress' component={ProgressScreen} />
+      <Tab.Screen name='Profile'>
+        {
+          (props) =>
+            <ProfileScreen
+              {...props}
+              setIsLoggedin={setIsLoggedin} />}
+      </Tab.Screen>
     </Tab.Navigator>
-  )
-}
+  );
+};
 
 export default MainPage
 
