@@ -5,14 +5,17 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import LoginScreen from './LoginScreen';
+import { saveUserData } from '../utills/UserStorage';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-const RegisterScreen = ({ setIsLoggedin }: { setIsLoggedin :React.Dispatch<React.SetStateAction<boolean | null>>}) => {
+const RegisterScreen = ({ setIsLoggedin }: { setIsLoggedin: React.Dispatch<React.SetStateAction<boolean | null>> }) => {
   const [username, onChangeUsername] = useState('');
   const [email, onChangeEmail] = useState('');
   const [password, onChangePassword] = useState('');
   const [repassword, onChangeRePassword] = useState('');
 
-  const navigation = useNavigation();
+  // const navigation = useNavigation();
+  const navigation = useNavigation<NativeStackNavigationProp<any>>();
 
   const validateEmail = (email: any) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -38,7 +41,7 @@ const RegisterScreen = ({ setIsLoggedin }: { setIsLoggedin :React.Dispatch<React
     }
     try {
       const user = { username, email, password };
-      await AsyncStorage.setItem('@userData', JSON.stringify(user));
+      saveUserData(user);
       Alert.alert("User Registered Sucessfully");
       setIsLoggedin(true);
 
@@ -48,7 +51,7 @@ const RegisterScreen = ({ setIsLoggedin }: { setIsLoggedin :React.Dispatch<React
     }
   }
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
+    <GestureHandlerRootView style={{ flex: 1 , backgroundColor : '#e29113'}}>
       <SafeAreaProvider>
         <SafeAreaView style={styles.container}>
           <TextInput

@@ -14,11 +14,10 @@ const RootNavigator = () => {
   useEffect(() => {
     const checkUser = async () => {
       const userData = await AsyncStorage.getItem('@userData');
-      setIsLoggedin(!!userData); 
+      setIsLoggedin(!!userData);
     };
     checkUser();
   }, []);
-  
 
   if (isLoggedin === null) {
     // Still loading

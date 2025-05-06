@@ -6,7 +6,7 @@ import RegisterScreen from '../screens/RegisterScreen';
 
 const Stack = createNativeStackNavigator();
 
-const AuthStack = ({ setIsLoggedin}: { setIsLoggedin :React.Dispatch<React.SetStateAction<boolean | null>> }) => {
+const AuthStack = ({ setIsLoggedin }: { setIsLoggedin: React.Dispatch<React.SetStateAction<boolean | null>> }) => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name='Login'>
